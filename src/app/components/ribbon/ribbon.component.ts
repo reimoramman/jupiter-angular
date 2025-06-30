@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ribbon',
   standalone: true,
-  imports: [NgClass, NgFor, NgIf],
+  imports: [CommonModule],
   templateUrl: './ribbon.component.html',
   styleUrls: ['./ribbon.component.css']
 })
@@ -13,42 +13,32 @@ export class RibbonComponent {
   @Input() url!: string;
   @Input() items: any[] = [];
 
-  get ribbonClass(): string {
-    if (!this.title) return 'ribbon-default';
-    return 'ribbon-' + this.title
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^a-z0-9\-]/g, '')
-      .trim();
+  @ViewChild('ribbonContainer') ribbonContainer!: ElementRef;
+
+  scrollLeft() {
+    this.ribbonContainer.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
   }
 
-  getAspectRatioClass(): string {
-    const wide = ['etv70', 'r2-minilaiv', 'peagi-aeguvad'];
-    return wide.includes(this.url) ? 'aspect-16-9' : 'aspect-9-16';
+  scrollRight() {
+    this.ribbonContainer.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
   }
 
   getImageUrl(item: any): string {
-
-  if (item.verticalPhotos?.medium?.url) {
-    return item.verticalPhotos.medium.url;
-  }
-
-
-  const photo = item.verticalPhotos?.[0];
-  if (photo) {
+    if (!item.verticalPhotos || item.verticalPhotos.length === 0) return '';
+    const photo = item.verticalPhotos[0];
     const types = ['17', '34', '2'];
-    for (const type of types) {
-      if (photo.photoTypes?.[type]?.url) {
-        return photo.photoTypes[type].url;
-      }
+    for (const t of types) {
+      if (photo.photoTypes && photo.photoTypes[t]) return photo.photoTypes[t].url;
     }
-   
     return photo.photoUrlBase || '';
   }
 
+  isWideCategory(): boolean {
+    const wideCategories = ['etv70', 'r2-minilaiv', 'peagi-aeguvad'];
+    return wideCategories.includes(this.url);
+  }
 
-  return '';
-}
-
-
+  getAspectRatioClass(): string {
+    return this.isWideCategory() ? 'aspect-16-9' : 'aspect-9-16';
+  }
 }

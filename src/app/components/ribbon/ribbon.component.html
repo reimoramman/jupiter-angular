@@ -1,11 +1,15 @@
-<section class="ribbon-section" [ngClass]="ribbonClass">
+<section class="ribbon-section" [ngClass]="'ribbon-' + url">
   <h2 class="ribbon-title">{{ title }}</h2>
-  <div class="ribbon-container">
+
+  <button class="scroll-btn left" (click)="scrollLeft()">‹</button>
+  <button class="scroll-btn right" (click)="scrollRight()">›</button>
+
+  <div #ribbonContainer class="ribbon-container">
     <div
       class="ribbon-item"
       *ngFor="let item of items"
       [ngClass]="getAspectRatioClass()">
-      <img [src]="getImageUrl(item)" alt="cover" />
+      <img [src]="getImageUrl(item)" alt="{{ item.title }}" />
       <div class="ribbon-heading">{{ item.title }}</div>
     </div>
   </div>

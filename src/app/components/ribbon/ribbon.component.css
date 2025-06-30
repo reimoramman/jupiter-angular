@@ -86,3 +86,62 @@
   background-color: #111; 
   min-height: 180px;
 }
+
+/* Nuppude stiil */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4); /* tumedam poolläbipaistev taust */
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Vasak nupp */
+.scroll-btn.left {
+  left: 10px;
+}
+
+/* Parem nupp */
+.scroll-btn.right {
+  right: 10px;
+}
+
+/* Üldine konteiner */
+.ribbon-section {
+  position: relative; /* et nupud paigutuks õigesti */
+  margin-bottom: 2rem;
+}
+
+/* Riba kerimise konteiner */
+.ribbon-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 10px;
+  padding: 10px 50px; /* natuke ruumi nuppude jaoks */
+}
+
+/* Peida kerimisribad (valikuline) */
+.ribbon-container::-webkit-scrollbar {
+  display: none;
+}
+.ribbon-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

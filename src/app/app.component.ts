@@ -10,7 +10,9 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
+  title = 'jupiter-err-ribbons';
   ribbons: { title: string; items: any[]; url: string }[] = [];
 
   constructor(private http: HttpClient) {}
