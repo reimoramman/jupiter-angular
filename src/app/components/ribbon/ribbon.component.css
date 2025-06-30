@@ -1,0 +1,88 @@
+.ribbon-section {
+  margin-bottom: 2rem;
+}
+
+.ribbon-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.ribbon-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 12px;
+  padding: 0 10px;
+  scrollbar-width: none;
+}
+
+.ribbon-container::-webkit-scrollbar {
+  display: none;
+}
+
+.ribbon-item {
+  flex: 0 0 auto;
+  width: 200px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #000;
+  transition: transform 0.2s ease-in-out;
+}
+
+.aspect-16-9 {
+  width: 324px;
+}
+
+.ribbon-item:hover {
+  transform: scale(1.02);
+}
+
+.ribbon-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.aspect-16-9 img {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-9-16 img {
+  aspect-ratio: 9 / 16;
+}
+
+.ribbon-heading {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* enim vaadatud riba */
+.ribbon-enim-vaadatud .ribbon-title {
+  color: darkred;
+  margin-bottom: 400px;
+}
+
+
+
+
+/* Juhul kui pilti ei leidu */
+.ribbon-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  background-color: #111; 
+  min-height: 180px;
+}
