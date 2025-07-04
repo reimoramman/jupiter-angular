@@ -8,7 +8,7 @@
     <div
       class="ribbon-item"
       *ngFor="let item of items"
-      [ngClass]="getAspectRatioClass(item)">
+      [ngClass]="getAspectRatioClass()">
       <img [src]="getImageUrl(item)" alt="{{ item.title }}" />
       <div class="ribbon-heading">{{ item.title }}</div>
     </div>

@@ -1,83 +1,70 @@
 .ribbon-section {
   position: relative;
-  margin: 24px 0;
-  padding: 0 32px;
+  padding: 16px;
+  overflow: hidden;
 }
 
 .ribbon-title {
-  font-size: 1.5rem;
   margin-bottom: 12px;
-  padding-left: 4px;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .ribbon-container {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-}
-
-.ribbon-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  padding-bottom: 8px;
 }
 
 .ribbon-item {
   flex: 0 0 auto;
-  width: 300px;
-  aspect-ratio: 16 / 9;
+  width: 180px;
   margin-right: 12px;
-  border-radius: 8px;
-  overflow: hidden;
   position: relative;
-  background-color: #000;
+}
+
+.aspect-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-9-16 {
+  aspect-ratio: 9 / 16;
 }
 
 .ribbon-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* ← Peamine muudatus: EI ZOOMI */
-  background-color: #000;
+  object-fit: cover;
   display: block;
+  border-radius: 6px;
 }
 
 .ribbon-heading {
+  font-size: 0.9rem;
+  margin-top: 4px;
   text-align: center;
-  font-size: 0.95rem;
-  margin-top: 6px;
-  color: #333;
 }
 
-/* Scroll-nupud */
+/* Scroll buttons */
 .scroll-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 4px;
 }
 
 .scroll-btn.left {
-  left: 8px;
+  left: 0;
 }
 
 .scroll-btn.right {
-  right: 8px;
+  right: 0;
 }
-
-.scroll-btn:hover {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-
-/*
-ribbon-section ribbon-undefined
-*/

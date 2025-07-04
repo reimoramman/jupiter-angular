@@ -1,10 +1,8 @@
-<main class="container">
-  <ng-container *ngFor="let ribbon of ribbons">
-    <app-ribbon
-      *ngIf="ribbon.items && ribbon.items.length > 0"
-      [title]="ribbon.title"
-      [url]="ribbon.url"
-      [items]="ribbon.items">
-    </app-ribbon>
-  </ng-container>
+<main>
+  <app-ribbon
+    *ngFor="let ribbon of ribbons"
+    [title]="ribbon.title"
+    [url]="ribbon.url"
+    [items]="ribbon.items">
+  </app-ribbon>
 </main>
