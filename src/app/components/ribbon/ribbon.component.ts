@@ -10,35 +10,35 @@ import { CommonModule } from '@angular/common';
 })
 export class RibbonComponent {
   @Input() title!: string;
-  @Input() url!: string;
   @Input() items: any[] = [];
+  @Input() url!: string;
 
   @ViewChild('ribbonContainer') ribbonContainer!: ElementRef;
 
-  scrollLeft() {
+  scrollLeft(): void {
     this.ribbonContainer.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
   }
 
-  scrollRight() {
+  scrollRight(): void {
     this.ribbonContainer.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
   }
 
   getImageUrl(item: any): string {
-    if (!item.verticalPhotos || item.verticalPhotos.length === 0) return '';
-    const photo = item.verticalPhotos[0];
+    const photo = item.horizontalPhotos?.[0] || item.verticalPhotos?.[0];
+    if (!photo) return '';
+
     const types = ['17', '34', '2'];
     for (const t of types) {
-      if (photo.photoTypes && photo.photoTypes[t]) return photo.photoTypes[t].url;
+      if (photo.photoTypes?.[t]?.url) {
+        return photo.photoTypes[t].url;
+      }
     }
+
     return photo.photoUrlBase || '';
   }
 
-  isWideCategory(): boolean {
-    const wideCategories = ['etv70', 'r2-minilaiv', 'peagi-aeguvad'];
-    return wideCategories.includes(this.url);
-  }
-
-  getAspectRatioClass(): string {
-    return this.isWideCategory() ? 'aspect-16-9' : 'aspect-9-16';
+  getAspectRatioClass(item: any): string {
+    const isVertical = !item.horizontalPhotos?.length && item.verticalPhotos?.length;
+    return isVertical ? 'aspect-9-16' : 'aspect-16-9';
   }
 }
